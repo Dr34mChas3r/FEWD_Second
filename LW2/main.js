@@ -80,5 +80,5 @@ let workers=[
     }
 ]
 for(i=0;i<workers.length;i++){
-    console.log(`ID ${workers[i].identificator} - ${workers[i].name}\nПосада: ${workers[i].post}`)
+    console.log(`ID ${workers[i].identificator} - ${workers[i].name}\n  Посада: ${workers[i].post}`)
 }
