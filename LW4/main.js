@@ -45,7 +45,7 @@ let comissions = [
         worker: "Петренко Іван",
         date_start: "2025-03-21",
         date_end_planned: "2025-05-21",
-        real_end_date: "-",
+        real_end_date: "2025-04-14",
         complexity: "200"
     },
     {
@@ -54,7 +54,7 @@ let comissions = [
         worker: "Сидоренко Оксана",
         date_start: "2025-04-21",
         date_end_planned: "2025-06-21",
-        real_end_date: "-",
+        real_end_date: "2025-05-15",
         complexity: "300"
     },
     {
