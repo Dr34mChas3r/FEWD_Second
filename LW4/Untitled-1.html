@@ -66,23 +66,24 @@
               </div>
               <div class="mb-3">
                 <label for="comissionGivenDateInput" class="form-label">Дата видачі</label>
-                <input type="text" class="form-control" id="comissionGivenDateInput" required>
+                <input type="date" class="form-control" id="comissionGivenDateInput" required>
               </div>
               <div class="mb-3">
                 <label for="comissionPlannedDateInput" class="form-label">Планова дата</label>
-                <input type="text" class="form-control" id="comissionPlannedDateInput" required>
+                <input type="date" class="form-control" id="comissionPlannedDateInput" required>
               </div>
               <div class="mb-3">
                 <label for="comissionRealDateInput" class="form-label">Реальна дата</label>
-                <input type="text" class="form-control" id="comissionRealDateInput" required>
+                <input type="date" class="form-control" id="comissionRealDateInput" required>
               </div>
               <div class="mb-3">
                 <label for="comissionComplexityInput" class="form-label">Трудомісткість</label>
                 <input type="text" class="form-control" id="comissionComplexityInput" required>
               </div>
+              <input type="hidden" id="comissionIdInput"/>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+            <button type="button" id="closeComissionModal" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
             <button type="submit" class="btn btn-primary">Зберегти</button>
           </div>
         </form>
@@ -109,9 +110,10 @@
                 <label for="workerPositionInput" class="form-label">Посада</label>
                 <input type="text" class="form-control" id="workerPositionInput" required>
               </div>
+              <input type="hidden" id="workerIdInput"/> 
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+            <button type="button" id="closeWorkerModal" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
             <button type="submit" class="btn btn-primary">Зберегти</button>
           </div>
         </form>
@@ -136,19 +138,20 @@
               </div>
               <div class="mb-3">
                 <label for="projectNameInput" class="form-label">Назва</label>
-                <input type="number" class="form-control" id="projectNameInput" required>
+                <input type="text" class="form-control" id="projectNameInput" required>
               </div>
               <div class="mb-3">
                 <label for="projectDeadlineInput" class="form-label">Крайній термін</label>
-                <input type="text" class="form-control" id="projectTopicInput" required>
+                <input type="date" class="form-control" id="projectDeadlineInput" required>
               </div>
               <div class="mb-3">
                 <label for="projectComplexityInput" class="form-label">Трудомісткість</label>
                 <input type="number" class="form-control" id="projectComplexityInput" required>
               </div>
+              <input type="hidden" id="projectIdInput" value=""/>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+            <button type="button" id="CloseProjectModal" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
             <button type="submit" class="btn btn-primary">Зберегти</button>
           </div>
         </form>
