@@ -13,16 +13,16 @@ class Project {
     }
     displayAsTableRow() {
         return `
-    <tr>
-    <td>${this.code}</td>
-    <td>${this.project}</td>
-    <td>${this.deadline}</td>
-    <td>${this.complexity}</td>
-        <td>
-        <button data-id="${this.id}" class="edit-project btn btn-warning">Редагувати</button>
-        <button data-id="${this.id}" class="delete-project btn btn-danger">Видалити</button>
-    </td>
-    </tr>`
+        <tr>
+        <td>${this.code}</td>
+        <td>${this.project}</td>
+        <td>${this.deadline}</td>
+        <td>${this.complexity}</td>
+            <td>
+            <button data-id="${this.id}" class="edit-project btn btn-warning">Редагувати</button>
+            <button data-id="${this.id}" class="delete-project btn btn-danger">Видалити</button>
+        </td>
+        </tr>`
     }
     displayAsOption() {
         return `<option value="${this.project}">${this.project}</option>`
@@ -45,16 +45,16 @@ class Worker {
     }
     displayAsTableRow() {
         return `
-    <tr>
-    <td>${this.id}</td>
-    <td>${this.name}</td>
-    <td>${this.position}</td>
-    <td>
-        <button data-id="${this.id}" class="edit-worker btn btn-warning">Редагувати</button>
-        <button data-id="${this.id}" class="delete-worker btn btn-danger">Видалити</button>
-    </td>
-    </tr>
-    `
+        <tr>
+        <td>${this.id}</td>
+        <td>${this.name}</td>
+        <td>${this.position}</td>
+        <td>
+            <button data-id="${this.id}" class="edit-worker btn btn-warning">Редагувати</button>
+            <button data-id="${this.id}" class="delete-worker btn btn-danger">Видалити</button>
+        </td>
+        </tr>
+        `
     }
     displayAsOption() {
         return `<option value="${this.name}">${this.name}</option>`
@@ -78,19 +78,19 @@ class Comission {
     }
     displayAsTableRow() {
         return `
-    <tr>
-    <td>${this.project}</td>
-    <td>${this.worker}</td>
-    <td>${this.date_start}</td>
-    <td>${this.deadline}</td>
-    <td>${this.real_end_date}</td>
-    <td>${this.complexity}</td>
-    <td>
-        <button data-id="${this.id}" class="edit-comission btn btn-warning">Редагувати</button>
-        <button data-id="${this.id}" class="delete-comission btn btn-danger">Видалити</button>
-    </td>
-    </tr>
-    `
+        <tr>
+        <td>${this.project}</td>
+        <td>${this.worker}</td>
+        <td>${this.date_start}</td>
+        <td>${this.deadline}</td>
+        <td>${this.real_end_date}</td>
+        <td>${this.complexity}</td>
+        <td>
+            <button data-id="${this.id}" class="edit-comission btn btn-warning">Редагувати</button>
+            <button data-id="${this.id}" class="delete-comission btn btn-danger">Видалити</button>
+        </td>
+        </tr>
+        `
     }
     edit(dataObj) {
         this.project = dataObj.project;
@@ -104,7 +104,7 @@ class Comission {
 }
 class BaseList {
     constructor() {
-        this.id = 1;
+        // this.id = 1;
         this.list = [];
     }
     edit(dataObj) {
@@ -142,148 +142,104 @@ class BaseList {
 
 class WorkerList extends BaseList {
     add(dataObj) {
-        dataObj.id = this.id++
+        //  dataObj.id = this.id++
         let worker = new Worker(dataObj);
         this.list.push(worker);
     }
 }
 class ProjectList extends BaseList {
     add(dataObj) {
-        dataObj.id = this.id++
+        // dataObj.id = this.id++
         let project = new Project(dataObj);
         this.list.push(project);
     }
 }
 class ComissionList extends BaseList {
     add(dataObj) {
-        dataObj.id = this.id++
+        //  dataObj.id = this.id++
         let comission = new Comission(dataObj);
         this.list.push(comission);
     }
 }
 let projects = new ProjectList();
-projects.add({
-    code: "KI-24-1",
-    project: "Розробка CRM",
-    deadline: "2025-06-01",
-    complexity: "500"
-}),
-    projects.add({
-        code: "KI-24-2",
-        project: "Автоматизація складу",
-        deadline: "2025-08-01",
-        complexity: "700"
-    }),
-    projects.add({
-        code: "ЛІ-20-25",
-        project: "Доставка ліків дронами",
-        deadline: "2025-09-01",
-        complexity: "700"
+fetch(`https://6815c68132debfe95dbc61e2.mockapi.io/api/Projects`)
+    .then(response => response.json())
+    .then(data => {
+        for (let i = 0; i < data.length; i++) { projects.add(data[i]) };
+        displayProjects();
     })
 let workers = new WorkerList();
-workers.add({
-    name: "Петренко Іван",
-    position: "Аналітик"
-});
-workers.add({
-    name: "Сидоренко Оксана",
-    position: "Розробник"
-});
-workers.add({
-    name: "Коваленко Дмитро",
-    position: "Менеджер"
-});
+fetch(`https://6815c68132debfe95dbc61e2.mockapi.io/api/Workers`)
+    .then(response => response.json())
+    .then(data => {
+        for (let i = 0; i < data.length; i++) { workers.add(data[i]) };
+        displayWorkers();
+    })
 
-let comissions = new ComissionList()
-comissions.add({
-    project: "Автоматизація складу",
-    worker: "Петренко Іван",
-    date_start: "2025-03-21",
-    deadline: "2025-05-21",
-    real_end_date: "2025-04-14",
-    complexity: "200"
-});
-comissions.add({
-    project: "Розробка CRM",
-    worker: "Сидоренко Оксана",
-    date_start: "2025-04-21",
-    deadline: "2025-06-21",
-    real_end_date: "2025-05-15",
-    complexity: "300"
-});
-comissions.add({
-    project: "Доставка ліків дронами",
-    worker: "Коваленко Дмитро",
-    date_start: "2025-02-21",
-    deadline: "2025-04-21",
-    real_end_date: "-",
-    complexity: "400"
-});
-
-
+let comissions = new ComissionList();
 function displayComissions() {
     const comissionTab = document.getElementById('comission');
     let comissionTabContent = `
-        <h3>Доручення</h3>
-        <button id="addComission" class="btn btn-success" data-toggle="modal" data-target="#comissionModal">Додати</button>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Проєкт</th>
-                    <th>Робітник</th>
-                    <th>Дата видачі</th>
-                    <th>Планова дата закінчення</th>
-                    <th>Реальна дата закінчення</th>
-                    <th>Трудомісткість</th>
-                </tr>
-            </thead>
-            <tbody>
-`
+            <h3>Доручення</h3>
+            <button id="addComission" class="btn btn-success" data-toggle="modal" data-target="#comissionModal">Додати</button>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Проєкт</th>
+                        <th>Робітник</th>
+                        <th>Дата видачі</th>
+                        <th>Планова дата закінчення</th>
+                        <th>Реальна дата закінчення</th>
+                        <th>Трудомісткість</th>
+                    </tr>
+                </thead>
+                <tbody>
+    `
     comissionTabContent += comissions.displayTableRows();
     comissionTabContent += `</tbody>
-</table>`;
+    </table>`;
     comissionTab.innerHTML = comissionTabContent;
 }
 function displayWorkers() {
     const workerTab = document.getElementById('worker');
     let workerTabContent = `
-<h3>Робітники</h3>
-<button id="addWorker" class="btn btn-success" data-toggle="modal" data-target="#workerModal">Додати</button>
-<table class="table table-striped">
-<thead>
-    <tr>
-        <th>ID</th>
-        <th>Ім'я</th>
-        <th>Посада</th>
-    </tr>
-</thead>
-<tbody>
-`;
+    <h3>Робітники</h3>
+    <button id="addWorker" class="btn btn-success" data-toggle="modal" data-target="#workerModal">Додати</button>
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Ім'я</th>
+            <th>Посада</th>
+        </tr>
+    </thead>
+    <tbody>
+    `;
     workerTabContent += workers.displayTableRows();
     workerTabContent += `</tbody>
-</table>`;
+    </table>`;
     workerTab.innerHTML = workerTabContent;
 }
 function displayProjects() {
     const projectTab = document.getElementById('projects');
     let projectTabContent = `<h3>Проєкти</h3>
-<button id="addProject" type="button" class="btn btn-success" data-toggle="modal" data-target="#projectModal">Додати</button>
-<table class="table table-striped">
-<thead>
-<tr>
-<th>Шифр</th>
-<th>Назва</th>
-<th>Крайній термін</th>
-<th>Трудомісткість</th>
-</tr>
-</thead>
-<tbody>`;
+    <button id="addProject" type="button" class="btn btn-success" data-toggle="modal" data-target="#projectModal">Додати</button>
+    <table class="table table-striped">
+    <thead>
+    <tr>
+    <th>Шифр</th>
+    <th>Назва</th>
+    <th>Крайній термін</th>
+    <th>Трудомісткість</th>
+    </tr>
+    </thead>
+    <tbody>`;
 
     projectTabContent += projects.displayTableRows();
 
     projectTabContent += `
-</tbody>
-</table>`;
+    </tbody>
+    </table>`;
     projectTab.innerHTML = projectTabContent;
 }
 
@@ -301,12 +257,24 @@ document.addEventListener('click', function (e) {
         e.preventDefault();
         let elementId = e.target.getAttribute('data-id');
         workers.delete(elementId);
-        displayWorkers();
+        fetch('https://6815c68132debfe95dbc61e2.mockapi.io/api/Workers' + elementId, {
+            method: "DELETE",
+        })
+            .then(response => response.json())
+            .then(data => {
+                displayWorkers();
+            });
     } else if (e.target.classList.contains('delete-project')) {
         e.preventDefault();
         let elementId = e.target.getAttribute('data-id');
         projects.delete(elementId);
-        displayProjects();
+        fetch('https://6815c68132debfe95dbc61e2.mockapi.io/api/Projects' + elementId, {
+            method: "DELETE",
+        })
+            .then(response => response.json())
+            .then(data => {
+                displayProjects();
+            });
     } else if (e.target.classList.contains('edit-project')) {
         e.preventDefault();
         let elementId = e.target.getAttribute('data-id');
@@ -382,8 +350,32 @@ document.addEventListener('submit', function (e) {
             position: position
         }
         if (id == "") {
+            fetch('https://6815c68132debfe95dbc61e2.mockapi.io/api/Workers', {
+                method: "POST",
+                body: JSON.stringify(newWorker)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    for (let i = 0; i < data.length; i++) {
+                        workers.add(data[i]);
+                    }
+                    displayWorkers();
+                });
             workers.add(newWorker);
-        } else { workers.edit(newWorker); }
+        } else {
+            fetch('https://6815c68132debfe95dbc61e2.mockapi.io/api/Workers', {
+                method: "PUT",
+                body: JSON.stringify(newWorker)
+            })
+            .then(response => response.json())
+            .then(data => {
+                for (let i = 0; i < data.length; i++) {
+                    workers.add(data[i]);
+                }
+                displayWorkers();
+            });
+            workers.edit(newWorker);
+        }
         displayWorkers();
         document.getElementById('workerIdInput').value = "";
         document.getElementById('workerForm').reset();
@@ -396,7 +388,6 @@ document.addEventListener('submit', function (e) {
         let name = document.getElementById('projectNameInput').value;
         let deadline = document.getElementById('projectDeadlineInput').value;
         let complexity = document.getElementById('projectComplexityInput').value;
-
         let newProject = {
             id: id,
             project: name,
@@ -406,8 +397,30 @@ document.addEventListener('submit', function (e) {
         }
 
         if (id == "") {
+            fetch('https://6815c68132debfe95dbc61e2.mockapi.io/api/Projects', {
+                method: "POST",
+                body: JSON.stringify(newProject)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    for (let i = 0; i < data.length; i++) {
+                        projects.add(data[i]);
+                    }
+                    displayProjects();
+                });
             projects.add(newProject)
         } else {
+            fetch('https://6815c68132debfe95dbc61e2.mockapi.io/api/Projects', {
+                method: "PUT",
+                body: JSON.stringify(newProject)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    for (let i = 0; i < data.length; i++) {
+                        projects.add(data[i]);
+                    }
+                    displayProjects();
+                });
             projects.edit(newProject);
         }
 
@@ -416,4 +429,4 @@ document.addEventListener('submit', function (e) {
         document.getElementById('projectForm').reset();
         document.getElementById('CloseProjectModal').click();
     }
-});  
+});
