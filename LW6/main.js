@@ -367,13 +367,13 @@ document.addEventListener('submit', function (e) {
                 method: "PUT",
                 body: JSON.stringify(newWorker)
             })
-            .then(response => response.json())
-            .then(data => {
-                for (let i = 0; i < data.length; i++) {
-                    workers.add(data[i]);
-                }
-                displayWorkers();
-            });
+                .then(response => response.json())
+                .then(data => {
+                    for (let i = 0; i < data.length; i++) {
+                        workers.add(data[i]);
+                    }
+                    displayWorkers();
+                });
             workers.edit(newWorker);
         }
         displayWorkers();
