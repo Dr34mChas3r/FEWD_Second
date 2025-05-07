@@ -397,7 +397,7 @@ document.addEventListener('submit', function (e) {
         }
 
         if (id == "") {
-            fetch('https://6815c68132debfe95dbc61e2.mockapi.io/api/Projects/', {
+            fetch('https://6815c68132debfe95dbc61e2.mockapi.io/api/Projects', {
                 method: "POST",
                 body: JSON.stringify(newProject)
             })
@@ -410,7 +410,7 @@ document.addEventListener('submit', function (e) {
                 });
             projects.add(newProject)
         } else {
-            fetch('https://6815c68132debfe95dbc61e2.mockapi.io/api/Projects/', {
+            fetch('https://6815c68132debfe95dbc61e2.mockapi.io/api/Projects', {
                 method: "PUT",
                 body: JSON.stringify(newProject)
             })
