@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторна робота №4</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+<h1>Робітники</h1>
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#comission">Доручення</a></li>
+    <li><a data-toggle="tab" href="#worker">Робітники</a></li>
+    <li><a data-toggle="tab" href="#projects">Проєкти</a></li>
+</ul>
+<div class="tab-content">
+    <div id="comission" class="tab-pane fade in active">
+        <h3>Доручення</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Проєкт</th>
+                    <th>Робітник</th>
+                    <th>Трудомісткість</th>
+                    <th>Дата видачі</th>
+                    <th>Планова дата закінчення</th>
+                    <th>Реальна дата закінчення</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <div id="worker" class="tab-pane fade">
+        <h3>Робітники</h3>
+        <p>Якийсь крутий текст</p>
+    </div>
+    <div id="projects" class="tab-pane fade">
+        <h3>Проєкти</h3>
+        <p>Якийсь крутий текст</p>
+    </div>
+</div>
+</div>
+<!-- Modal for adding comission -->
+<div class="modal fade" id="comissionModal" tabindex="-1" role="dialog" aria-labelledby="comissionModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="comissionModalLongTitle">Додати/Редагувати доручення</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="comissionForm">
+          <div class="modal-body">
+              <div class="mb-3">
+                <label for="comissionProjectInput" class="form-label">Проєкт</label>
+                <input type="text" class="form-control" id="comissionProjectInput" required>
+              </div>
+              <div class="mb-3">
+                <label for="comissionWorkerInput" class="form-label">Робітник</label>
+                <input type="text" class="form-control" id="comissionWorkerInput" required>
+              </div>
+              <div class="mb-3">
+                <label for="comissionGivenDateInput" class="form-label">Дата видачі</label>
+                <input type="date" class="form-control" id="comissionGivenDateInput" required>
+              </div>
+              <div class="mb-3">
+                <label for="comissionPlannedDateInput" class="form-label">Планова дата</label>
+                <input type="date" class="form-control" id="comissionPlannedDateInput" required>
+              </div>
+              <div class="mb-3">
+                <label for="comissionRealDateInput" class="form-label">Реальна дата</label>
+                <input type="date" class="form-control" id="comissionRealDateInput" required>
+              </div>
+              <div class="mb-3">
+                <label for="comissionComplexityInput" class="form-label">Трудомісткість</label>
+                <input type="text" class="form-control" id="comissionComplexityInput" required>
+              </div>
+              <input type="hidden" id="comissionIdInput"/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="closeComissionModal" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+            <button type="submit" class="btn btn-primary">Зберегти</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal for adding worker -->
+  <div class="modal fade" id="workerModal" tabindex="-1" role="dialog" aria-labelledby="workerModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="workerModalLongTitle">Додати/Редагувати робітника</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="workerForm">
+          <div class="modal-body">
+              <div class="mb-3">
+                <label for="workerNameInput" class="form-label">Ім'я</label>
+                <input type="text" class="form-control" id="workerNameInput" required>
+              </div>
+              <div class="mb-3">
+                <label for="workerPositionInput" class="form-label">Посада</label>
+                <input type="text" class="form-control" id="workerPositionInput" required>
+              </div>
+              <input type="hidden" id="workerIdInput"/> 
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="closeWorkerModal" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+            <button type="submit" class="btn btn-primary">Зберегти</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Modal for adding projects -->
+  <div class="modal fade" id="projectModal" tabindex="-1" role="dialog" aria-labelledby="projectModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="projectModalLongTitle">Додати/Редагувати проєкт</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form id="projectForm">
+          <div class="modal-body">
+            <div class="mb-3">
+                <label for="projectCodeInput" class="form-label">Шифр</label>
+                <input type="text" class="form-control" id="projectCodeInput" required>
+              </div>
+              <div class="mb-3">
+                <label for="projectNameInput" class="form-label">Назва</label>
+                <input type="text" class="form-control" id="projectNameInput" required>
+              </div>
+              <div class="mb-3">
+                <label for="projectDeadlineInput" class="form-label">Крайній термін</label>
+                <input type="date" class="form-control" id="projectDeadlineInput" required>
+              </div>
+              <div class="mb-3">
+                <label for="projectComplexityInput" class="form-label">Трудомісткість</label>
+                <input type="number" class="form-control" id="projectComplexityInput" required>
+              </div>
+              <input type="hidden" id="projectIdInput" value=""/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="CloseProjectModal" class="btn btn-secondary" data-dismiss="modal">Закрити</button>
+            <button type="submit" class="btn btn-primary">Зберегти</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="main.js"></script>
+</html>
